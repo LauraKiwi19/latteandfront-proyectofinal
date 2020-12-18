@@ -5,10 +5,11 @@ import {BrowserRouter, Switch} from "react-router-dom";
 import PrivateRoute from 'router/PrivateRoute';
 import PublicRoute from 'router/PublicRoute';
 
-import {HOME, BOOKS} from 'config/routes';
+import {HOME, BOOKS, LOGOUT} from 'config/routes';
 
 import Home from 'views/Home';
 import Books from 'views/Books';
+import Logout from 'views/Logout';
 
 import AuthcontextProvider from 'contexts/authContext';
 
@@ -41,6 +42,7 @@ function App() {
       <BrowserRouter>
         <Switch>
           <PrivateRoute path={BOOKS} component={Books}/>
+          <PrivateRoute path={LOGOUT} component={Logout}/>
           <PublicRoute path={HOME} component={Home} exact/>
         </Switch>
       </BrowserRouter>

@@ -1,17 +1,33 @@
 import {createContext, useState, useMemo, useCallback} from 'react';
+import PropTypes from 'prop-types';
 
+
+AuthContextProvider.propTypes = {
+  children: PropTypes.object
+};
+
+const MY_AUTH_APP = "MY_AUTH_APP";
 
 export const AuthContext = createContext();
 
 export default function AuthContextProvider({children}) {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(window.localStorage.getItem(MY_AUTH_APP));
 
-  const login = useCallback(() => setIsAuthenticated(true), []);
+  const login = useCallback(() =>{
+      window.localStorage.setItem(MY_AUTH_APP, true);
+      setIsAuthenticated(true);
+  }, []);
 
-  const value = useMemo(() => (
+  const logout = useCallback(() =>{
+    window.localStorage.removeItem(MY_AUTH_APP, true);
+    setIsAuthenticated(false);
+}, []);
+
+  const value = useMemo(() => ({
     login,
+    logout,
     isAuthenticated
-  ), [isAuthenticated, login]);
+  }), [isAuthenticated, logout, login]);
 
   return(
     <AuthContext.Provider value={value}>
