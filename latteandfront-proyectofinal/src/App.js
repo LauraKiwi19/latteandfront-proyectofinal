@@ -1,17 +1,16 @@
 import React from 'react';
 // import data from 'utils/apiClient';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from "react-router-dom";
+import {BrowserRouter, Switch} from "react-router-dom";
 
-import {HOME, CATEGORIES, LOGOUT, BOOKS} from './config/routes';
+import PrivateRoute from 'router/PrivateRoute';
+import PublicRoute from 'router/PublicRoute';
+
+import {HOME, BOOKS} from 'config/routes';
 
 import Home from 'views/Home';
 import Books from 'views/Books';
-import Logout from 'views/Logout';
-import Categories from 'views/Categories';
+
+import AuthcontextProvider from 'contexts/authContext';
 
 function App() {
 
@@ -34,27 +33,19 @@ function App() {
   // };
 
   // HELLO TRONCA
-  // <button onClick={handleClickGET(data)}>GET</button>
-  // <button onClick={handleClickPOST(urlPOST, user)}>POST</button>
+  // <button onClick={handleClickGET}>GET</button>
+  // <button onClick={handleClickPOST}>POST</button>
 
   return (
+    <AuthcontextProvider>
+      <BrowserRouter>
+        <Switch>
+          <PrivateRoute path={BOOKS} component={Books}/>
+          <PublicRoute path={HOME} component={Home} exact/>
+        </Switch>
+      </BrowserRouter>
+    </AuthcontextProvider>
 
-    <Router>
-      <Switch>
-        <Route exact path={HOME}>
-          <Home/>
-        </Route>
-        <Route path={BOOKS}>
-          <Books/>
-        </Route>
-        <Route path={CATEGORIES}>
-          <Categories/>
-        </Route>
-        <Route path={LOGOUT}>
-          <Logout/>
-        </Route>
-      </Switch>
-    </Router>
 
   );
 }
