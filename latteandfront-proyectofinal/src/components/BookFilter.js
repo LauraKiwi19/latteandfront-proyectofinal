@@ -8,10 +8,10 @@ const BookFilter = ({categories, handleFilter}) =>{
 
   return(
     <div>
-      <label for="categories">Categorías</label>
+      <label htmlFor="categories">Categorías</label>
       <select onChange={handleFilter} id="categorias">
-        {categories.map(categorie => <option key={categorie.id} value={categorie.name}>{categorie.name}</option>)}
         <option value="Todos">Todos</option>
+        {categories.map(categorie => <option key={categorie.id} value={categorie.name}>{categorie.name}</option>)}
       </select>
     </div>
   );
