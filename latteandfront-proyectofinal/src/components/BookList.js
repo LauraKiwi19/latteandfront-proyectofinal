@@ -5,6 +5,8 @@ import BookListLayout from 'components/UI/BookListLayout';
 
 const BookList = ({books}) => {
 
+  console.log(books);
+
   if (!books){
     <h1>Loading</h1>;
   };
@@ -17,7 +19,7 @@ const BookList = ({books}) => {
         bookTitle={book.title} 
         id={book.id} 
         categories={book.categories}
-        image={book.image}
+        image={book.image ? book.image : "https://upload.wikimedia.org/wikipedia/en/6/60/No_Picture.jpg"}
         />)}
     </BookListLayout>
   );

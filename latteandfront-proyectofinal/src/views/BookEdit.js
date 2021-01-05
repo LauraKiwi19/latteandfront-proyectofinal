@@ -3,7 +3,7 @@ import {useParams} from 'react-router-dom';
 import useFetch from 'hooks/useFetch';
 import {useState} from 'react';
 import apiClient from 'utils/apiClient';
-import blobToBase64 from 'utils/blobToBase65';
+import blobToBase64 from 'utils/blobToBase64';
 
 
 

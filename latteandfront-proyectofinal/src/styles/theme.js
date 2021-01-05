@@ -16,7 +16,7 @@ const theme = {
   fontSize: {
     small: "0.75rem",
     regular: "1rem",
-    large: "1.75rem",
+    large: "1.5rem",
     largeXl: "2.5rem",
   },
 

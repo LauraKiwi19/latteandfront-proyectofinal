@@ -1,17 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {BookFilterContainer} from 'components/UI/BookFilterContainer';
 
 
 const BookFilter = ({categories, handleFilter}) =>{
 
   return(
-    <div>
+    <BookFilterContainer>
       <label htmlFor="categories">Categorías</label>
       <select onChange={handleFilter} id="categorias">
         <option value="Todos">Todos</option>
         {categories.map(categorie => <option key={categorie.id} value={categorie.name}>{categorie.name}</option>)}
       </select>
-    </div>
+    </BookFilterContainer>
   );
 
 

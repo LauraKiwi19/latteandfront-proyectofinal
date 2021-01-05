@@ -1,6 +1,9 @@
 import React, {useState} from 'react';
+import {useHistory} from 'react-router';
+import {BOOKS} from 'config/routes';
+import Select from 'react-select';
 import apiClient from 'utils/apiClient';
-import blobToBase64 from 'utils/blobToBase65';
+import blobToBase64 from 'utils/blobToBase64';
 import useFetch from 'hooks/useFetch';
 
 
@@ -10,24 +13,30 @@ function BookCreate() {
 
   const [title, setTitle] = useState('');
   const [image, setImage] = useState(null);
-  const [category, setCategory] = useState('Magia y Fantasía');
+  const [selectedCategories, setSelectedCategories] = useState(null);
+  // const [category, setCategory] = useState({ id: "1", name: "Magia y fantasía"});
+  console.log(selectedCategories);
 
-  console.log(category);
-
+  const history = useHistory();
 
   function handleTitle(event){
     setTitle(event.target.value);
   }
 
-  
   function handleImage(event){
     setImage(event.target.files[0]);
   }
 
-  function handleCategory(event){
-    const categoryName = event.target.value;
-    setCategory(categoryName);
-  }
+  // function handleCategory(event){
+  //   const categoryId = event.target.value;
+  //   const categoryName = event.target.options[event.target.selectedIndex].text;
+
+  //   setCategory({
+  //     name: categoryName,
+  //     id: categoryId
+  //   });
+
+  // }
 
   async function handleSubmit(event){
     event.preventDefault();
@@ -37,18 +46,20 @@ function BookCreate() {
         title: title,
         categories: {
           '0': {
-            "name": category
+            "id": category.id,
+            "name": category.name
           }
         },
         base64Image: base64Image
       };
-      console.log(data);
       const response = await apiClient.post('http://18.130.120.189/api/books', data);
-      console.log(response);
+      history.push(BOOKS);
+      return response;
       
     } catch (error){
       console.log(error);
     }
+
 
   }
 
@@ -72,11 +83,17 @@ function BookCreate() {
        
         <div>
             <label htmlFor="categories">Categorías</label>
-            <select onChange={handleCategory} id="categorias">
-              {!categories ? '' : categories.map(categorie => <option key={categorie.id} value={categorie.name}>{categorie.name}</option>)}
-            </select>
+            <Select 
+            defaultValue={selectedCategories} 
+            onChange={setSelectedCategories}
+            options={categories} 
+            getOptionLabel={option => option.name} 
+            getOptionValue={option => option.id}
+            isMulti/>
+            {/* <select onChange={handleCategory} id="categorias">
+              {!categories ? '' : categories.map(category => <option key={category.id} value={category.id} >{category.name}</option>)}
+            </select> */}
         </div>
-
 
        <button type="submit">Crear Libro</button>
      </form>

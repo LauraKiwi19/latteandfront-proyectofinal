@@ -4,6 +4,8 @@ import {NavLink} from 'react-router-dom';
 export const Nav = styled.nav`
   ul{
     display: flex;
+    padding: 2rem 6.5rem;
+    font-size: ${(props) => props.theme.fontSize.large};
   }
 
 `;
