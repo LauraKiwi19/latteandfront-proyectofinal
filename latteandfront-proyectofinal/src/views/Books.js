@@ -1,16 +1,9 @@
-// import React, {useEffect, useState} from 'react';
-import {Link} from 'react-router-dom';
-import {LOGOUT} from 'config/routes';
+import {useState, useEffect} from 'react';
 
 import BookList from 'components/BookList';
 import BookFilter from 'components/BookFilter';
 
 import useFetch from 'hooks/useFetch';
-import {useState, useEffect} from 'react';
-// import useBooks from 'hooks/useBooks';
-// import useCategories from 'hooks/useCategories';
-
-
 
 
 function Books() {
@@ -20,8 +13,6 @@ function Books() {
   
   const [selectedCategory, setCategory] = useState("Todos");
   const [booksToShow, setBooksToShow] = useState();
-
-  console.log(selectedCategory);
 
   const printBooks = () => {
     if (!books){
@@ -50,11 +41,8 @@ function Books() {
 
   return (
     <div>
-      BOOK
-      <Link to={LOGOUT}>Cerrar sesión </Link>
       <BookFilter handleFilter={handleFilter} categories={categories}/>
       <BookList books={selectedCategory === 'Todos' ? books : booksToShow}/>
-      
     </div>
   );
 }

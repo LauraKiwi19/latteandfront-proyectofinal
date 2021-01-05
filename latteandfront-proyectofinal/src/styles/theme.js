@@ -1,0 +1,33 @@
+
+
+const theme = {
+  colors: {
+    primary: "#6FE680",
+    lightPrimary:  "#7AFF8E",
+    darkPrimary: "#316639",
+    secondary: "#A585E6",
+    lightSecondary: "#B894FF",
+    darkSecondary: "#493B66",
+    tertiary: "#E6A057",
+    lightTertiary: "#FFB361",
+    darkTertiary: "#664727"
+  },
+
+  fontSize: {
+    small: "0.75rem",
+    regular: "1rem",
+    large: "1.75rem",
+    largeXl: "2.5rem",
+  },
+
+  fontWeight: {
+    extraLight: "100",
+    light: "300", 
+    regular: "400",
+    medium: "500",
+    bold: "600"
+  }
+
+};
+
+export default theme;

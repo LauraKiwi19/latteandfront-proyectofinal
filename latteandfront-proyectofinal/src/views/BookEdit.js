@@ -1,32 +1,27 @@
-import React, {useState} from 'react';
+import React from 'react';
+import {useParams} from 'react-router-dom';
+import useFetch from 'hooks/useFetch';
+import {useState} from 'react';
 import apiClient from 'utils/apiClient';
 import blobToBase64 from 'utils/blobToBase65';
-import useFetch from 'hooks/useFetch';
 
 
-function BookCreate() {
+
+
+
+export default function BookEdit(){
+
+  const {id} = useParams();
+  const {data: book} = useFetch (`http://18.130.120.189/api/books/${id}`);
 
   const {data: categories} = useFetch('http://18.130.120.189/api/categories');
 
   const [title, setTitle] = useState('');
   const [image, setImage] = useState(null);
-  const [category, setCategory] = useState('Magia y Fantasía');
-
-  console.log(category);
-
+  const [category, setCategory] = useState();
 
   function handleTitle(event){
     setTitle(event.target.value);
-  }
-
-  
-  function handleImage(event){
-    setImage(event.target.files[0]);
-  }
-
-  function handleCategory(event){
-    const categoryName = event.target.value;
-    setCategory(categoryName);
   }
 
   async function handleSubmit(event){
@@ -42,31 +37,37 @@ function BookCreate() {
         },
         base64Image: base64Image
       };
-      console.log(data);
       const response = await apiClient.post('http://18.130.120.189/api/books', data);
       console.log(response);
-      
     } catch (error){
       console.log(error);
     }
 
   }
 
+  function handleImage(event){
+    setImage(event.target.files[0]);
+  }
+
+  function handleCategory(event){
+    const categoryName = event.target.value;
+    setCategory(categoryName);
+  }
+
   const imageUrl = image ? URL.createObjectURL(image) : '';
 
- return(
-   <div>
-     <form onSubmit={handleSubmit}>
+  return(
+    <form onSubmit={handleSubmit}>
        <div>
          <label>Título</label>
-         <input type="text" onChange={handleTitle} value={title} name="title"/>
+         <input type="text" onChange={handleTitle} value={title} placeholder={!book ? '' : book.title} name="title"/>
        </div>
 
        <div>
           <label>Imagen</label>
           <input type="file" onChange={handleImage} name="image"/>
           <div>
-           {image  && <img src={imageUrl}/>}
+           <img src={ !image && book ? book.image : imageUrl}/>
           </div>
         </div>
        
@@ -78,12 +79,7 @@ function BookCreate() {
         </div>
 
 
-       <button type="submit">Crear Libro</button>
+       <button type="submit">Editar Libro</button>
      </form>
-   </div>
- );
-
+  );
 }
-
-
-export default BookCreate;

@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 
 
 const BookFilter = ({categories, handleFilter}) =>{
-  console.log(categories);
-
 
   return(
     <div>

@@ -9,6 +9,7 @@ function BookDetail() {
 
   const { id } = useParams();
   const {data: book} = useFetch (`http://18.130.120.189/api/books/${id}`);
+  console.log(book);
 
 
   if (!book){
@@ -17,6 +18,7 @@ function BookDetail() {
 
   return(
     <div>
+      <img src={book.image} alt={book.name}/>
         <h1>{book.title}</h1>
         <ul>
           {book.categories.map(categorie => 
