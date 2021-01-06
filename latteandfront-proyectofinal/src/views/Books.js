@@ -11,38 +11,52 @@ function Books() {
   const {data: categories} = useFetch('http://18.130.120.189/api/categories');
   const {data: books} = useFetch('http://18.130.120.189/api/books');
   
-  const [selectedCategory, setCategory] = useState("Todos");
+  const [selectedCategory, setCategory] = useState({id: "", name: "Todos"});
   const [booksToShow, setBooksToShow] = useState();
 
+  console.log(books);
+  console.log(selectedCategory);
+  // const categoriesComplete = !categories ? [] : categories.push({id:"none", name: "Todos"});
+  // console.log(categoriesComplete);
+
   const printBooks = () => {
-    if (!books){
-      <p>Cargando</p>;
+    if (!books || !selectedCategory){
+      console.log("cargando 2");
+      <p>Cargando 2</p>;
     } else {
-      const filteredBooks = books.filter(book => book.categories.every(category => category.name === selectedCategory));
+      const filteredBooks = books.filter(book => book.categories.every(category => category.name === selectedCategory.name));
       setBooksToShow(filteredBooks);
-      console.log(booksToShow);
+      console.log("soy printbooks");
     }
   };
 
   useEffect(function(){
+    console.log("soy el efecto");
     setBooksToShow(books);
     printBooks(selectedCategory);
   }, [books, selectedCategory]
   );
 
-  if (!books || !categories || !booksToShow){
-    return <p>Cargando</p>;
+  function handleEraseCategory(){
+    setCategory({id: "", name: "Todos"});
   }
 
-   const handleFilter = (event) => {
-    const categoryName = event.target.value;
-    setCategory(categoryName);
-  };
+  if (!books || !categories || !booksToShow || !selectedCategory){
+    console.log("cargando 1");
+    return <p>Cargando 1</p>;
+  }
+
+  //  const handleFilter = () => {
+  //   const categoryName = event.target.value;
+  //   console.log(categoryName);
+  //   setCategory(categoryName);
+  // };
 
   return (
     <div>
-      <BookFilter handleFilter={handleFilter} categories={categories}/>
-      <BookList books={selectedCategory === 'Todos' ? books : booksToShow}/>
+      <BookFilter handleFilter={setCategory} categories={categories} selectedCategory={selectedCategory}/>
+      <button onClick={handleEraseCategory}>X</button>
+      <BookList books={selectedCategory.name === 'Todos' ? books : booksToShow}/>
     </div>
   );
 }

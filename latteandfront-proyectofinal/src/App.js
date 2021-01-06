@@ -15,7 +15,7 @@ import Home from 'views/Home/Home';
 import Books from 'views/Books';
 import Logout from 'views/Logout';
 import BookDetail from 'views/BookDetail';
-import BookCreate from 'views/BookCreate';
+import BookCreate from 'views/BookCreate/BookCreate';
 import BookDelete from 'views/BookDelete';
 import BooksEdit from 'views/BookEdit';
 
