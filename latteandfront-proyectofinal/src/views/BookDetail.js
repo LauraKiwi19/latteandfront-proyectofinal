@@ -1,7 +1,8 @@
-// import {useState} from 'react';
 import {useParams} from 'react-router-dom';
 import useFetch from 'hooks/useFetch';
-// import Categories from 'components/Categories'
+import FlexContainer from 'components/UI/FlexContainer';
+import {BookDetailContainer} from 'components/UI/BookDetailContainer';
+import {BookTitle, BookImage, CategoryList, Category} from 'components/UI/Card/styledComponents';
 
 
 
@@ -17,14 +18,17 @@ function BookDetail() {
   }
 
   return(
-    <div>
-      <img src={book.image} alt={book.name}/>
-        <h1>{book.title}</h1>
-        <ul>
-          {book.categories.map(categorie => 
-             <li key={categorie.id}>{categorie.name}</li>)}
-        </ul>
-    </div>
+    <FlexContainer>
+      <BookDetailContainer>
+        <BookTitle>{book.title}</BookTitle>
+        <BookImage src={book.image} alt={book.name}/>
+          <CategoryList>
+            {book.categories.map(category => 
+              <Category category={category.id} key={category.id}>{category.name}</Category>)}
+          </CategoryList>
+        
+      </BookDetailContainer>
+    </FlexContainer>
   );
 
 

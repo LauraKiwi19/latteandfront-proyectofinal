@@ -30,7 +30,6 @@ function Card({image, bookTitle, categories, id}){
           </StyledLink>
         </CardTools>
 
-
     </CardContainer>
 
   );

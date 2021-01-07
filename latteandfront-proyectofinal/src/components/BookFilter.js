@@ -23,7 +23,6 @@ const BookFilter = ({selectedCategory, categories, handleFilter}) =>{
             options={categories} 
             getOptionLabel={option => option.name} 
             getOptionValue={option => option.name}
-            isClearable
             />
     </BookFilterContainer>
   );

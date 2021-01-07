@@ -4,6 +4,8 @@ import useFetch from 'hooks/useFetch';
 import {useState} from 'react';
 import apiClient from 'utils/apiClient';
 import blobToBase64 from 'utils/blobToBase64';
+import FlexContainer from 'components/UI/FlexContainer';
+import Form from 'components/UI/Form/Form';
 
 
 
@@ -57,29 +59,18 @@ export default function BookEdit(){
   const imageUrl = image ? URL.createObjectURL(image) : '';
 
   return(
-    <form onSubmit={handleSubmit}>
-       <div>
-         <label>Título</label>
-         <input type="text" onChange={handleTitle} value={title} placeholder={!book ? '' : book.title} name="title"/>
-       </div>
-
-       <div>
-          <label>Imagen</label>
-          <input type="file" onChange={handleImage} name="image"/>
-          <div>
-           <img src={ !image && book ? book.image : imageUrl}/>
-          </div>
-        </div>
-       
-        <div>
-            <label htmlFor="categories">Categorías</label>
-            <select onChange={handleCategory} id="categorias">
-              {!categories ? '' : categories.map(categorie => <option key={categorie.id} value={categorie.name}>{categorie.name}</option>)}
-            </select>
-        </div>
-
-
-       <button type="submit">Editar Libro</button>
-     </form>
+    <FlexContainer>
+      <Form
+        handleSubmit={handleSubmit}
+        handleTitle={handleTitle}
+        handleImage={handleImage}
+        title={title}
+        image={image}
+        imageUrl={imageUrl}
+        categories={categories}   
+        book={book}
+        handleCategory={handleCategory}
+        />
+    </FlexContainer>
   );
 }

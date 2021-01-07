@@ -36,10 +36,23 @@ export const CategoryList = styled.ul`
 `;
 
 export const Category = styled.li `
-   background-color: ${(props) => props.theme.colors.lightPrimary};
+   background-color: ${(props) => {
+     switch (props.category) {
+      case 1: 
+        return props.theme.colors.primary;
+      case 2:
+        return props.theme.colors.secondary;
+      case 3: 
+        return props.theme.colors.tertiary;
+      case 4: 
+        return props.theme.colors.darkSecondary;
+      case 5:
+        return props.theme.colors.darkPrimary;
+     }}};
    padding: 0.5rem 1rem;
    border-radius: 1.5rem;
    margin-right: 0.25rem;
+   color: white;
 `;
 
 export const CardTools = styled.div`

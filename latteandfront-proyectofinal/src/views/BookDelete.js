@@ -1,6 +1,11 @@
 import React from 'react';
 import {Link, useParams, useHistory} from 'react-router-dom';
 import {BOOKS} from 'config/routes';
+import FlexContainer from 'components/UI/FlexContainer';
+import {BookDeleteContainer} from 'components/UI/BookDeleteContainer';
+import Button from 'components/UI/Button';
+
+
 
 export default function BookDelete() { 
   const { id } = useParams();
@@ -17,8 +22,6 @@ export default function BookDelete() {
             'X-AUTH-TOKEN': 'LIBRARIFY',
           }});
         const json = await response.json();
-        console.log('Funciono');
-        console.log(json);
         return json;
       }
       catch (error){
@@ -26,18 +29,18 @@ export default function BookDelete() {
       }
 
       history.push(BOOKS);
-
-
     }
 
 
   return(
-    <div>
-      <p>¿Te borro?</p>
-      <div>
-        <button onClick={handleConfirmation}>Yes</button>
-        <button><Link to={BOOKS}>Nop</Link></button>
-      </div>
-    </div>
+    <FlexContainer>
+      <BookDeleteContainer>
+        <p>¿Te borro?</p>
+        <div>
+          <Button onClick={handleConfirmation}>Si</Button>
+          <Button secondary><Link to={BOOKS}>No</Link></Button>
+        </div>
+      </BookDeleteContainer>
+    </FlexContainer>
   );
 }

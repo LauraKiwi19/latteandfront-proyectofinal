@@ -14,14 +14,8 @@ function Books() {
   const [selectedCategory, setCategory] = useState({id: "", name: "Todos"});
   const [booksToShow, setBooksToShow] = useState();
 
-  console.log(books);
-  console.log(selectedCategory);
-  // const categoriesComplete = !categories ? [] : categories.push({id:"none", name: "Todos"});
-  // console.log(categoriesComplete);
-
   const printBooks = () => {
     if (!books || !selectedCategory){
-      console.log("cargando 2");
       <p>Cargando 2</p>;
     } else {
       const filteredBooks = books.filter(book => book.categories.every(category => category.name === selectedCategory.name));
@@ -31,19 +25,13 @@ function Books() {
   };
 
   useEffect(function(){
-    console.log("soy el efecto");
     setBooksToShow(books);
     printBooks(selectedCategory);
   }, [books, selectedCategory]
   );
 
-  function handleEraseCategory(){
-    setCategory({id: "", name: "Todos"});
-  }
-
   if (!books || !categories || !booksToShow || !selectedCategory){
-    console.log("cargando 1");
-    return <p>Cargando 1</p>;
+    return <p>Cargando</p>;
   }
 
   //  const handleFilter = () => {
@@ -55,7 +43,6 @@ function Books() {
   return (
     <div>
       <BookFilter handleFilter={setCategory} categories={categories} selectedCategory={selectedCategory}/>
-      <button onClick={handleEraseCategory}>X</button>
       <BookList books={selectedCategory.name === 'Todos' ? books : booksToShow}/>
     </div>
   );
