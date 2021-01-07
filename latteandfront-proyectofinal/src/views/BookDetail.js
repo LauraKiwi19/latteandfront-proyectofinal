@@ -10,8 +10,6 @@ function BookDetail() {
 
   const { id } = useParams();
   const {data: book} = useFetch (`http://18.130.120.189/api/books/${id}`);
-  console.log(book);
-
 
   if (!book){
     return <h1>Loading</h1>;
@@ -26,7 +24,6 @@ function BookDetail() {
             {book.categories.map(category => 
               <Category category={category.id} key={category.id}>{category.name}</Category>)}
           </CategoryList>
-        
       </BookDetailContainer>
     </FlexContainer>
   );

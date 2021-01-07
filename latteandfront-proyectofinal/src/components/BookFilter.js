@@ -6,14 +6,6 @@ import {StyledSelect} from 'components/UI/Form/styledComponents';
 
 const BookFilter = ({selectedCategory, categories, handleFilter}) =>{
 
-  // const everyCategory = categories.push({id: null, name: "Todos"});
-  // console.log(categories);
-  // console.log(everyCategory);
-
-  // useEffect(function(){
-  //   if selectedCategory.name === "Todos"
-  // }
-
   return(
     <BookFilterContainer>
       <label htmlFor="categories">Categorías</label>

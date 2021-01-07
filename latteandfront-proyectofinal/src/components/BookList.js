@@ -5,8 +5,6 @@ import BookListLayout from 'components/UI/BookListLayout';
 
 const BookList = ({books}) => {
 
-  console.log(books);
-
   if (!books){
     <h1>Loading</h1>;
   };

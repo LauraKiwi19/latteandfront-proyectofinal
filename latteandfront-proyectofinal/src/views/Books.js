@@ -1,8 +1,6 @@
 import {useState, useEffect} from 'react';
-
 import BookList from 'components/BookList';
 import BookFilter from 'components/BookFilter';
-
 import useFetch from 'hooks/useFetch';
 
 
@@ -16,11 +14,10 @@ function Books() {
 
   const printBooks = () => {
     if (!books || !selectedCategory){
-      <p>Cargando 2</p>;
+      <p>Cargando</p>;
     } else {
       const filteredBooks = books.filter(book => book.categories.every(category => category.name === selectedCategory.name));
       setBooksToShow(filteredBooks);
-      console.log("soy printbooks");
     }
   };
 
@@ -33,12 +30,6 @@ function Books() {
   if (!books || !categories || !booksToShow || !selectedCategory){
     return <p>Cargando</p>;
   }
-
-  //  const handleFilter = () => {
-  //   const categoryName = event.target.value;
-  //   console.log(categoryName);
-  //   setCategory(categoryName);
-  // };
 
   return (
     <div>
