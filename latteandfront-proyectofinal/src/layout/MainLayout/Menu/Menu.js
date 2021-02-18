@@ -2,27 +2,39 @@ import React from 'react';
 import {Nav, StyledNavLink} from 'layout/MainLayout/Menu/styledComponents';
 import {BOOKS, BOOK_CREATE, CATEGORIES, LOGOUT} from 'config/routes';
 
+const menuLinks = [
+  {
+    to: BOOKS, 
+    name: 'Libros'
+  }, 
+  {
+    to: CATEGORIES, 
+    name: 'Categorías'
+  }, 
+  {
+    to: BOOK_CREATE,
+    name: 'Crear Libro'
+  }, 
+  {
+    to: LOGOUT, 
+    name: 'Logout'
+  }
+];
+
 function Menu() {
 
   return(
     <Nav>
       <ul>
-        <li>
-          <StyledNavLink to={BOOKS} activeClassName='active' exact>Libros</StyledNavLink>
+      {menuLinks.map((link) =>(
+        <li key={link.to}>
+          <StyledNavLink to={link.to} activeClassName='active' exact>
+            {link.name} 
+          </StyledNavLink>
         </li>
-        <li>
-          <StyledNavLink to={CATEGORIES} activeClassName='active' exact>Categorías</StyledNavLink>
-        </li>
-        <li>
-          <StyledNavLink to={BOOK_CREATE} activeClassName='active' exact>Crear Libro</StyledNavLink>
-        </li>
-        <li>
-          <StyledNavLink to={LOGOUT} activeClassName='active' exact>Logout</StyledNavLink>
-        </li>
+      ))}
       </ul>
     </Nav>
-
-
   );
 
 }

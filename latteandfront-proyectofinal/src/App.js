@@ -12,12 +12,12 @@ import MainLayout from 'layout/MainLayout/MainLayout';
 import {HOME, BOOKS, BOOKS_ID, BOOK_CREATE, BOOK_DEL, LOGOUT, BOOK_EDIT} from 'config/routes';
 
 import Home from 'views/Home/Home';
-import Books from 'views/Books';
+import Books from 'views/Books/Books';
 import Logout from 'views/Logout';
 import BookDetail from 'views/BookDetail';
 import BookCreate from 'views/BookCreate/BookCreate';
 import BookDelete from 'views/BookDelete';
-import BooksEdit from 'views/BookEdit';
+import BooksEdit from 'views/BookEdit/BookEdit';
 
 
 import AuthcontextProvider from 'contexts/authContext';

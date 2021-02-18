@@ -10,12 +10,12 @@ export const CardContainer = styled.div`
     margin: 1rem;
 `;
 
-export const BookImage = styled.img`
+export const Image = styled.img`
     width: 100%;
     border-radius: 1.5rem;
 `;
 
-export const BookTitle = styled.h2`
+export const Title = styled.h2`
     font-size: 20px;
     margin: 0.5rem 0rem;
 `;

@@ -37,9 +37,8 @@ function BookCreate() {
         categories: selectedCategories,
         base64Image: base64Image
       };
-      const response = await apiClient.post('http://18.130.120.189/api/books', data);
+      await apiClient.post('http://18.130.120.189/api/books', data);
       history.push(BOOKS);
-      return response;
       
     } catch (error){
       console.log(error);

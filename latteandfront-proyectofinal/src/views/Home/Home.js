@@ -34,6 +34,7 @@ function Home() {
           <Input type="text" value={magicWord} onChange={handleInputChange} />
           <Error>{error}</Error>
           <Button type="submit">Iniciar Sesión</Button>
+          <p>La palabra es: LATTEANDCODE</p>
         </form>
       </FormContainer>
     </MainContainer>

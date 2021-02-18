@@ -13,22 +13,19 @@ export default function BookDelete() {
 
   async function handleConfirmation(){
       try{
-        const response = await fetch(`http://18.130.120.189/api/books/${id}`
-          , {
+        await fetch(`http://18.130.120.189/api/books/${id}`, 
+          {
           method: 'DELETE',
           body: '',
           headers: {
             'Accept': 'application/json',
             'X-AUTH-TOKEN': 'LIBRARIFY',
           }});
-        const json = await response.json();
-        return json;
+        history.push(BOOKS);
       }
       catch (error){
         console.log(error);
       }
-
-      history.push(BOOKS);
     }
 
 

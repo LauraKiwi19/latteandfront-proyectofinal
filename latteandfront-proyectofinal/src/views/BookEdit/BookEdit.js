@@ -4,8 +4,7 @@ import useFetch from 'hooks/useFetch';
 import {useState} from 'react';
 import apiClient from 'utils/apiClient';
 import blobToBase64 from 'utils/blobToBase64';
-import FlexContainer from 'components/UI/FlexContainer';
-import Form from 'components/UI/Form/Form';
+import BookEditView from 'views/BookEdit/BookEditView';
 
 
 
@@ -59,18 +58,16 @@ export default function BookEdit(){
   const imageUrl = image ? URL.createObjectURL(image) : '';
 
   return(
-    <FlexContainer>
-      <Form
-        handleSubmit={handleSubmit}
-        handleTitle={handleTitle}
-        handleImage={handleImage}
-        title={title}
-        image={image}
-        imageUrl={imageUrl}
-        categories={categories}   
-        book={book}
-        handleCategory={handleCategory}
-        />
-    </FlexContainer>
+    <BookEditView
+      handleSubmit={handleSubmit}
+      handleTitle={handleTitle}
+      handleImage={handleImage}
+      title={title}
+      image={image}
+      imageUrl={imageUrl}
+      categories={categories}   
+      book={book}
+      handleCategory={handleCategory}
+    />
   );
 }

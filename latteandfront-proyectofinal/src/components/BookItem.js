@@ -1,14 +1,14 @@
 import Card from 'components/UI/Card/Card';
 import PropTypes from 'prop-types';
 
-export default function BookItem({bookTitle, id, categories, image}){
+export default function BookItem({book, key}){
   return(
-    <li key={id}>
+    <li key={key}>
       <Card
-      bookTitle={bookTitle}
-      categories={categories}
-      image={image}
-      id={id}>
+        title={book.title}
+        categories={book.categories}
+        image={book.image ? book.image : "https://upload.wikimedia.org/wikipedia/en/6/60/No_Picture.jpg"}
+        id={book.id}>
       </Card>
     </li>
   );
@@ -16,7 +16,8 @@ export default function BookItem({bookTitle, id, categories, image}){
 }
 
 BookItem.propTypes = {
-  bookTitle: PropTypes.string,
+  book: PropTypes.obj,
+  title: PropTypes.string,
   categories: PropTypes.array,
   key: PropTypes.number,
   id: PropTypes.number,
