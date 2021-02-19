@@ -3,13 +3,16 @@ import useFetch from 'hooks/useFetch';
 import FlexContainer from 'components/UI/FlexContainer';
 import {BookDetailContainer} from 'components/UI/BookDetailContainer';
 import {Title, Image, CategoryList, Category} from 'components/UI/Card/styledComponents';
+import {BACKEND} from 'consts/backendUrl';
 
 
 
 function BookDetail() {
 
   const { id } = useParams();
-  const {data: book} = useFetch (`http://18.130.120.189/api/books/${id}`);
+  const {data: book} = useFetch(`${BACKEND}/api/books/${id}`);
+
+
 
   if (!book){
     return <h1>Loading</h1>;

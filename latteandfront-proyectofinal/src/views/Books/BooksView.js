@@ -6,8 +6,8 @@ function BooksView({handleFilter, categories, selectedCategory, books}) {
 
   return(
     <>
-      <BookFilter books={books}/>
-      <BookList books={books} handleFilter={handleFilter} categories={categories} selectedCategory={selectedCategory}/>
+      <BookFilter handleFilter={handleFilter} selectedCategory={selectedCategory} categories={categories}/>
+      <BookList books={books}/>
     </>
   );
 

@@ -35,8 +35,8 @@ function App() {
               <PublicRoute path={HOME} component={Home} exact/>
               <PrivateRoute path={BOOKS} component={Books} exact/>
               <PrivateRoute path={LOGOUT} component={Logout} exact/>
-              <PrivateRoute path={BOOKS_ID} component={BookDetail} exact/>
               <PrivateRoute path={BOOK_CREATE} component={BookCreate} exact/>
+              <PrivateRoute path={BOOKS_ID} component={BookDetail} exact/>
               <PrivateRoute path={BOOK_DEL} component={BookDelete} exact/>
               <PrivateRoute path={BOOK_EDIT} component={BooksEdit} exact/>
             </Switch>

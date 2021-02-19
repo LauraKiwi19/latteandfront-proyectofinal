@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {useHistory} from 'react-router';
 import {BOOKS} from 'config/routes';
+import {BACKEND} from 'consts/backendUrl';
 import apiClient from 'utils/apiClient';
 import blobToBase64 from 'utils/blobToBase64';
 import useFetch from 'hooks/useFetch';
@@ -11,7 +12,7 @@ import FlexContainer from 'components/UI/FlexContainer';
 
 function BookCreate() {
 
-  const {data: categories} = useFetch('http://18.130.120.189/api/categories');
+  const {data: categories} = useFetch(`${BACKEND}/api/categories`);
   const history = useHistory();
 
   const [title, setTitle] = useState('');
@@ -37,7 +38,7 @@ function BookCreate() {
         categories: selectedCategories,
         base64Image: base64Image
       };
-      await apiClient.post('http://18.130.120.189/api/books', data);
+      await apiClient.post(`${BACKEND}/api/books`, data);
       history.push(BOOKS);
       
     } catch (error){
@@ -59,6 +60,7 @@ function BookCreate() {
         categories={categories}
         selectedCategories={selectedCategories}
         setSelectedCategories={setSelectedCategories}
+        buttonText="Crear Libro"
     />
    </FlexContainer>
 

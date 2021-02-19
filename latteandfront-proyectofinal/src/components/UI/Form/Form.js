@@ -4,7 +4,7 @@ import {StyledSelect} from 'components/UI/Form/styledComponents';
 import {FormContainer, Container, Label, Input, PreviewBookImage} from 'components/UI/Form/styledComponents';
 import Button from 'components/UI/Button';
 
-export default function Form({handleSubmit, handleTitle, handleImage, title, image, imageUrl, categories, selectedCategories, setSelectedCategories, book}){
+export default function Form({handleSubmit, handleTitle, handleImage, title, image, imageUrl, categories, selectedCategories, setSelectedCategories, book, buttonText}){
 
   return(
     <FormContainer>
@@ -33,7 +33,7 @@ export default function Form({handleSubmit, handleTitle, handleImage, title, ima
             isMulti/>
         </Container>
 
-       <Button type="submit">Crear Libro</Button>
+       <Button type="submit">{buttonText}</Button>
      </form>
     </FormContainer>
 
@@ -52,5 +52,6 @@ Form.propTypes = {
   categories: propTypes.array,
   selectedCategories: propTypes.array,
   setSelectedCategories: propTypes.func,
-  book: propTypes.object
+  book: propTypes.object,
+  buttonText: propTypes.string
 };

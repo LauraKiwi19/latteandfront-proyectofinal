@@ -2,6 +2,7 @@ import React from 'react';
 import {useParams} from 'react-router-dom';
 import useFetch from 'hooks/useFetch';
 import {useState} from 'react';
+import {BACKEND} from 'consts/backendUrl';
 import apiClient from 'utils/apiClient';
 import blobToBase64 from 'utils/blobToBase64';
 import BookEditView from 'views/BookEdit/BookEditView';
@@ -13,9 +14,9 @@ import BookEditView from 'views/BookEdit/BookEditView';
 export default function BookEdit(){
 
   const {id} = useParams();
-  const {data: book} = useFetch (`http://18.130.120.189/api/books/${id}`);
+  const {data: book} = useFetch (`${BACKEND}/api/books/${id}`);
 
-  const {data: categories} = useFetch('http://18.130.120.189/api/categories');
+  const {data: categories} = useFetch(`${BACKEND}/api/categories`);
 
   const [title, setTitle] = useState('');
   const [image, setImage] = useState(null);
@@ -38,7 +39,7 @@ export default function BookEdit(){
         },
         base64Image: base64Image
       };
-      const response = await apiClient.post('http://18.130.120.189/api/books', data);
+      const response = await apiClient.post(`${BACKEND}/api/books`, data);
       console.log(response);
     } catch (error){
       console.log(error);

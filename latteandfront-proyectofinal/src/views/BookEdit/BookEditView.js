@@ -17,6 +17,7 @@ export default function BookEditView({handleSubmit, handleTitle, handleImage, ti
             categories={categories}   
             book={book}
             handleCategory={handleCategory}
+            buttonText="Editar Libro"
       />
 
     </FlexContainer>
@@ -34,5 +35,6 @@ BookEditView.propTypes = {
   categories: propTypes.array,
   selectedCategories: propTypes.array,
   setSelectedCategories: propTypes.func,
-  book: propTypes.object
+  book: propTypes.object,
+  buttonText: propTypes.string
 };
