@@ -12,6 +12,8 @@ function BookDetail() {
   const { id } = useParams();
   const {data: book} = useFetch(`${BACKEND}/api/books/${id}`);
 
+  console.log(book);
+
 
 
   if (!book){
@@ -27,6 +29,14 @@ function BookDetail() {
             {book.categories.map(category => 
               <Category category={category.id} key={category.id}>{category.name}</Category>)}
           </CategoryList>
+          <p>{book.description}</p>
+          <p>{book.score}</p>
+          <ul>
+            {book.authors.map(author => 
+              <li key={author.id}>{author.name}</li>
+            )}
+          </ul>
+          <p>{book.readAt ? book.readAt.substr(0,10) : ""}</p>
       </BookDetailContainer>
     </FlexContainer>
   );
