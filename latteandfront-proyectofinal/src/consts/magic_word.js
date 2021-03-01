@@ -1,1 +1,1 @@
-export const MAGIC_WORD = 'LATTEANDCODE';
+export const MAGIC_WORD = 'DIHTB';

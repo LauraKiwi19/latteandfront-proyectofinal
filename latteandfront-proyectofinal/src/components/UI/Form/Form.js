@@ -16,7 +16,7 @@ export default function Form({handleSubmit, handleTitle, handleImage, title, ima
 
        <Container>
           <Label htmlFor="image">Imagen</Label>
-          <input type="file" onChange={handleImage} name="image"/>
+          <input type="file" onChange={handleImage} name="image" imageUrl={imageUrl} />
           <div>
             <PreviewBookImage src={!image && book ? book.image : imageUrl}/>
           </div>
@@ -25,12 +25,13 @@ export default function Form({handleSubmit, handleTitle, handleImage, title, ima
         <Container>
             <Label htmlFor="categories">Categorías</Label>
             <StyledSelect
-            defaultValue={selectedCategories} 
-            onChange={setSelectedCategories}
-            options={categories} 
-            getOptionLabel={option => option.name} 
-            getOptionValue={option => option.id}
-            isMulti/>
+              onChange={setSelectedCategories}
+              options={categories} 
+              getOptionLabel={option => option.name} 
+              getOptionValue={option => option.id}
+              defaultValue={selectedCategories}
+              isMulti
+            />
         </Container>
 
        <Button type="submit">{buttonText}</Button>

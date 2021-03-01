@@ -2,7 +2,8 @@ import React, {useState} from 'react';
 import {MAGIC_WORD} from 'consts/magic_word';
 import useAuthContext from 'hooks/useAuthContext';
 import Button from 'components/UI/Button';
-import {MainContainer, Title, FormContainer, Input, Label, Error} from 'views/Home/styledComponents';
+import Title from 'views/Home/Title';
+import {MainContainer, FormContainer, Input, Label, Error} from 'views/Home/styledComponents';
 
 
 function Home() {
@@ -27,14 +28,13 @@ function Home() {
 
   return (
     <MainContainer>
-      <Title>📘🔒</Title>
+      <Title/>
       <FormContainer>
         <form onSubmit={handleSubmit}>
-          <Label>Introduce palabra secreta</Label>
-          <Input type="text" value={magicWord} onChange={handleInputChange} />
+          <Label ></Label>
+          <Input placeholder= "Secret Word (DIHTB)" type="text" value={magicWord} onChange={handleInputChange} />
           <Error>{error}</Error>
           <Button type="submit">Iniciar Sesión</Button>
-          <p>La palabra es: LATTEANDCODE</p>
         </form>
       </FormContainer>
     </MainContainer>

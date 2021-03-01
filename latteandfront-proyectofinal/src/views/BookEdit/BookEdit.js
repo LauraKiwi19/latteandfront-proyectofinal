@@ -1,10 +1,13 @@
 import React from 'react';
 import {useParams} from 'react-router-dom';
+import {useHistory} from 'react-router';
 import useFetch from 'hooks/useFetch';
+import {BOOKS} from 'config/routes';
 import {useState} from 'react';
 import {BACKEND} from 'consts/backendUrl';
 import apiClient from 'utils/apiClient';
 import blobToBase64 from 'utils/blobToBase64';
+import prepareCategories from 'utils/prepareCategories';
 import BookEditView from 'views/BookEdit/BookEditView';
 
 
@@ -14,13 +17,17 @@ import BookEditView from 'views/BookEdit/BookEditView';
 export default function BookEdit(){
 
   const {id} = useParams();
-  const {data: book} = useFetch (`${BACKEND}/api/books/${id}`);
+  const history = useHistory();
 
+  const {data: book} = useFetch (`${BACKEND}/api/books/${id}`);
   const {data: categories} = useFetch(`${BACKEND}/api/categories`);
 
   const [title, setTitle] = useState('');
   const [image, setImage] = useState(null);
-  const [category, setCategory] = useState();
+  const [selectedCategories, setSelectedCategories] = useState(book?.categories);
+
+  console.log(selectedCategories);
+
 
   function handleTitle(event){
     setTitle(event.target.value);
@@ -32,15 +39,13 @@ export default function BookEdit(){
       const base64Image = await blobToBase64(image);
       const data ={
         title: title,
-        categories: {
-          '0': {
-            "name": category
-          }
-        },
-        base64Image: base64Image
+        base64image: base64Image,
+        categories: prepareCategories(book ? book.categories : [], selectedCategories)
       };
-      const response = await apiClient.post(`${BACKEND}/api/books`, data);
-      console.log(response);
+      const url = book ? `${BACKEND}/api/books/${book.id}` : `${BACKEND}/api/books`; //esto en realidad sería si fuera mismo componente para Create/Edit
+      console.log(data);
+      await apiClient.post(url, data); // El ha puesto JSON.stringify(data)
+      history.push(BOOKS);
     } catch (error){
       console.log(error);
     }
@@ -51,12 +56,22 @@ export default function BookEdit(){
     setImage(event.target.files[0]);
   }
 
-  function handleCategory(event){
-    const categoryName = event.target.value;
-    setCategory(categoryName);
-  }
+  // function handleCategories(event){
+  //   const categoryName = event.target.value;
+  //   console.log(categoryName);
+  //   setCategories(categoryName);
+  // }
 
-  const imageUrl = image ? URL.createObjectURL(image) : '';
+  // const imageUrl = image ? URL.createObjectURL(image) : '';
+
+  let imageUrl = null;
+  if (image) {
+    imageUrl = URL.createObjectURL(image);
+  } else if (book) {
+    imageUrl = book.image;
+  } else {
+    imageUrl = null;
+  } // Creo que en este caso igual, sería si fuera genérico, me da que valdría mi terciario
 
   return(
     <BookEditView
@@ -66,9 +81,10 @@ export default function BookEdit(){
       title={title}
       image={image}
       imageUrl={imageUrl}
-      categories={categories}   
+      categories={categories}
+      selectedCategories={selectedCategories}   
       book={book}
-      handleCategory={handleCategory}
+      setSelectedCategories={setSelectedCategories}
     />
   );
 }

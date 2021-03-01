@@ -10,9 +10,12 @@ export const CardContainer = styled.div`
     margin: 1rem;
 `;
 
-export const Image = styled.img`
-    width: 100%;
+export const Image = styled.div`
+    background-image: url(${props => props.image});
+    height: 20rem;
+    width: 14rem;
     border-radius: 1.5rem;
+    background-size: cover;
 `;
 
 export const Title = styled.h2`
@@ -38,16 +41,20 @@ export const CategoryList = styled.ul`
 export const Category = styled.li `
    background-color: ${(props) => {
      switch (props.category) {
-      case 1: 
+      case "Ensayo": 
         return props.theme.colors.primary;
-      case 2:
+      case "Narrativa":
         return props.theme.colors.secondary;
-      case 3: 
-        return props.theme.colors.tertiary;
-      case 4: 
+      case "Histórica": 
+        return props.theme.colors.darkTertiary;
+      case "Distopía": 
         return props.theme.colors.darkSecondary;
-      case 5:
+      case "Aventuras":
         return props.theme.colors.darkPrimary;
+      case "Ciencia ficción":
+        return props.theme.colors.lightTertiary;
+      case "Novela Fantástica":
+        return props.theme.colors.lightPrimary;
      }}};
    padding: 0.5rem 1rem;
    border-radius: 1.5rem;

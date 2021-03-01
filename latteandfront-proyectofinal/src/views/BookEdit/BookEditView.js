@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 import Form from 'components/UI/Form/Form';
 
 
-export default function BookEditView({handleSubmit, handleTitle, handleImage, title, image, imageUrl, categories, book, handleCategory}){
+export default function BookEditView({handleSubmit, handleTitle, handleImage, title, image, imageUrl, categories, book, setSelectedCategories, selectedCategories}){
 
   return(
     <FlexContainer>
@@ -14,9 +14,10 @@ export default function BookEditView({handleSubmit, handleTitle, handleImage, ti
             title={title}
             image={image}
             imageUrl={imageUrl}
-            categories={categories}   
+            categories={categories}
+            selectedCategories={selectedCategories} 
+            setSelectedCategories={setSelectedCategories}  
             book={book}
-            handleCategory={handleCategory}
             buttonText="Editar Libro"
       />
 
@@ -28,7 +29,6 @@ BookEditView.propTypes = {
   handleSubmit: propTypes.func,
   handleTitle: propTypes.func,
   handleImage: propTypes.func,
-  handleCategory: propTypes.func,
   title: propTypes.string,
   image: propTypes.string, 
   imageUrl: propTypes.string,

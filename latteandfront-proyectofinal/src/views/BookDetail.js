@@ -27,7 +27,7 @@ function BookDetail() {
         <Image src={book.image} alt={book.name}/>
           <CategoryList>
             {book.categories.map(category => 
-              <Category category={category.id} key={category.id}>{category.name}</Category>)}
+              <Category category={category.name} key={category.id}>{category.name}</Category>)}
           </CategoryList>
           <p>{book.description}</p>
           <p>{book.score}</p>

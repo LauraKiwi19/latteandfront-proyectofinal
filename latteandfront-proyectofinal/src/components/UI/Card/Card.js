@@ -10,14 +10,16 @@ import {CardContainer, Image, Title, StyledLink, CategoryList, Category, CardToo
 
 function Card({image, title, categories, id}){
 
+  console.log(image);
+
   return(
     <CardContainer>
         <StyledLink to={generatePath(BOOKS_ID, { id: id })}>
           <div>
-            <Image src={image} alt={title}/>
+            <Image image={image} color="red"/>
             <Title>{title}</Title>
             <CategoryList>
-              {categories.map((categorie) => <Category key={categorie.id} category={categorie.id}>{categorie.name}</Category>)}
+              {categories.map((categorie) => <Category key={categorie.id} category={categorie.name}>{categorie.name}</Category>)}
             </CategoryList>
           </div>
         </StyledLink>
