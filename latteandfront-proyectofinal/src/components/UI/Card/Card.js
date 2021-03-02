@@ -3,14 +3,12 @@ import {generatePath} from 'react-router-dom';
 
 import {BOOKS_ID, BOOK_DEL, BOOK_EDIT} from 'config/routes';
 import PropTypes from 'prop-types';
-import {CardContainer, Image, Title, StyledLink, CategoryList, Category, CardTools} from 'components/UI/Card/styledComponents';
+import {CardContainer, Image, Author, AuthorsList, Title, StyledLink, CategoryList, Category, CardTools} from 'components/UI/Card/styledComponents';
 
 
 
 
-function Card({image, title, categories, id}){
-
-  console.log(image);
+function Card({image, title, categories, id, authors}){
 
   return(
     <CardContainer>
@@ -18,6 +16,9 @@ function Card({image, title, categories, id}){
           <div>
             <Image image={image} color="red"/>
             <Title>{title}</Title>
+            <AuthorsList>
+              {authors?.map((author) => <Author key={author.id}>{author.name}</Author>)}
+            </AuthorsList>
             <CategoryList>
               {categories.map((categorie) => <Category key={categorie.id} category={categorie.name}>{categorie.name}</Category>)}
             </CategoryList>
@@ -42,6 +43,7 @@ function Card({image, title, categories, id}){
 Card.propTypes = {
   title: PropTypes.string,
   categories: PropTypes.array,
+  authors: PropTypes.array,
   key: PropTypes.number,
   id: PropTypes.number,
   image: PropTypes.string

@@ -22,7 +22,7 @@ export default function BookEdit(){
   const {data: book} = useFetch (`${BACKEND}/api/books/${id}`);
   const {data: categories} = useFetch(`${BACKEND}/api/categories`);
 
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState(book?.title);
   const [image, setImage] = useState(null);
   const [selectedCategories, setSelectedCategories] = useState(book?.categories);
 
@@ -44,7 +44,7 @@ export default function BookEdit(){
       };
       const url = book ? `${BACKEND}/api/books/${book.id}` : `${BACKEND}/api/books`; //esto en realidad sería si fuera mismo componente para Create/Edit
       console.log(data);
-      await apiClient.post(url, data); // El ha puesto JSON.stringify(data)
+      await apiClient.post(url, data);
       history.push(BOOKS);
     } catch (error){
       console.log(error);

@@ -3,7 +3,7 @@ import {MAGIC_WORD} from 'consts/magic_word';
 import useAuthContext from 'hooks/useAuthContext';
 import Button from 'components/UI/Button';
 import Title from 'views/Home/Title';
-import {MainContainer, FormContainer, Input, Label, Error} from 'views/Home/styledComponents';
+import {MainContainer, FormContainer, HomeInput, Label, Error} from 'views/Home/styledComponents';
 
 
 function Home() {
@@ -32,7 +32,7 @@ function Home() {
       <FormContainer>
         <form onSubmit={handleSubmit}>
           <Label ></Label>
-          <Input placeholder= "Secret Word (DIHTB)" type="text" value={magicWord} onChange={handleInputChange} />
+          <HomeInput placeholder= "Secret Word (DIHTB)" type="text" value={magicWord} onChange={handleInputChange} />
           <Error>{error}</Error>
           <Button type="submit">Iniciar Sesión</Button>
         </form>

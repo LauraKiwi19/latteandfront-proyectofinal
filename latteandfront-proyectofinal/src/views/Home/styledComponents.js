@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {Input} from 'components/UI/Form/styledComponents';
 
 export const MainContainer = styled.div`
     //background-color: ${(props) => props.theme.colors.lightPrimary};
@@ -19,21 +20,27 @@ export const MainContainer = styled.div`
 
 // `;
 
-export const Input = styled.input`
-  padding: 0.5rem;
-  border: none;
-  border-bottom: 2px solid grey;
+// export const Input = styled.input`
+//   padding: 0.5rem;
+//   border: none;
+//   border-bottom: 2px solid grey;
+//   margin: 1rem 0rem;
+//   font-size: 1.25rem;
+//   text-align: center;
+//   color: ${(props) => props.theme.colors.darkPrimary};
+//     &:focus{
+//       outline: none;
+//     }
+//     &[placeholder]{
+//       text-align: center;
+      
+//     }
+// `;
+
+export const HomeInput = styled(Input)`
   margin: 1rem 0rem;
   font-size: 1.25rem;
   text-align: center;
-  color: ${(props) => props.theme.colors.darkPrimary};
-    &:focus{
-      outline: none;
-    }
-    &[placeholder]{
-      text-align: center;
-      
-    }
 `;
 
 export const Label = styled.label`

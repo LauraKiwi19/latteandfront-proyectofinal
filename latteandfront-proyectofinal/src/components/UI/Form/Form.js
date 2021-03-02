@@ -4,14 +4,14 @@ import {StyledSelect} from 'components/UI/Form/styledComponents';
 import {FormContainer, Container, Label, Input, PreviewBookImage} from 'components/UI/Form/styledComponents';
 import Button from 'components/UI/Button';
 
-export default function Form({handleSubmit, handleTitle, handleImage, title, image, imageUrl, categories, selectedCategories, setSelectedCategories, book, buttonText}){
+export default function Form({handleSubmit, handleTitle, handleImage, image, imageUrl, categories, selectedCategories, setSelectedCategories, book, buttonText}){
 
   return(
     <FormContainer>
             <form onSubmit={handleSubmit}>
        <Container>
          <Label htmlFor="title">Título</Label>
-         <Input type="text" onChange={handleTitle} value={title} name="title" placeholder={!book ? '' : book.title}/>
+         <Input type="text" onChange={handleTitle} value={!book ? '' : book.title} name="title" placeholder={!book ? '' : book.title}/>
        </Container>
 
        <Container>

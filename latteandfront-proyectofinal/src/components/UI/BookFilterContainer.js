@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 
 export const BookFilterContainer = styled.div`
-    width: 100%;
     padding: 1rem 2rem;
     display: flex;
     flex-direction: row;

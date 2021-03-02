@@ -25,11 +25,21 @@ export const Label = styled.label`
   margin-right: 1.75rem;
 `;
 
+
 export const Input = styled.input`
-  min-width: 200px;
-  padding: 0.25rem;
+  padding: 0.5rem;
   border: none;
-  border-bottom: 1px solid ${(props) => props.theme.colors.darkPrimary};
+  border-bottom: 2px solid grey;
+  margin: 0rem;
+  font-size: 1rem;
+  color: ${(props) => props.theme.colors.darkPrimary};
+    &:focus{
+      outline: none;
+    }
+    &[placeholder]{
+      text-align: center;
+      
+    }
 `;
 
 export const StyledSelect = styled(Select)`

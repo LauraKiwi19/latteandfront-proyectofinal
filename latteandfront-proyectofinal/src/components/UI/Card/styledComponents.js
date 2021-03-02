@@ -38,6 +38,15 @@ export const CategoryList = styled.ul`
   display: flex;
 `;
 
+export const AuthorsList = styled.ul`
+   text-decoration: none;
+`;
+
+export const Author = styled.li`
+   padding-bottom: 0.75rem;
+   font-size: 1.1rem;
+`;
+
 export const Category = styled.li `
    background-color: ${(props) => {
      switch (props.category) {
